@@ -1,4 +1,4 @@
-# MovieSphere
+# MovieSphere [An Internship Task Of InternIntelligence]
 
 **MovieSphere** is a modern and sleek movie website that provides users with the latest popular, top-rated, upcoming, and now-playing movies. It also features separate categories for Hollywood, Bollywood , Pakistani, and other international films.
 
