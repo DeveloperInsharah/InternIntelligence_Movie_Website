@@ -51,7 +51,7 @@ body{
     max-width: 1960px;
     margin: 0 auto;
 }
-.movies-container{
+.movies-container,.movie-slider{
     display: flex;
     position: relative;
     justify-content: start;
@@ -68,7 +68,7 @@ body{
     margin-top: 20px;
     overflow-x: scroll;
 }
-.movies-container::-webkit-scrollbar,.movies-wrapper::-webkit-scrollbar{
+.movies-container::-webkit-scrollbar,.movies-wrapper::-webkit-scrollbar,.movie-slider::-webkit-scrollbar{
     width: 0px;
     background-color: transparent;
 }
@@ -401,9 +401,6 @@ body::-webkit-scrollbar-thumb{
 }
 .slider-btn:active{
     transform: scale(.9);
-}
-.category{
-    /* background-color: black; */
 }
 .category h2{
     color: white;

@@ -86,8 +86,7 @@ async function FetchMovies() {
     fetchMovies(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_origin_country=IN&sort_by=popularity.desc`, "bollywood-movies");
     fetchMovies(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_origin_country=PK&sort_by=popularity.desc`, "pakistani-movies");
     fetchMovies(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_origin_country=FR,DE,JP&sort_by=popularity.desc`, "other-movies");
-  }
-  
+} 
 function HomeSection(){
   Shery.imageEffect("#back", {
     style: 5,
@@ -164,7 +163,7 @@ function SearchFunctionality(){
     document.getElementById("searchInput").addEventListener("input", () => {
         clearTimeout(debounceTimer);
         const query = document.getElementById("searchInput").value.trim();
-        
+
         if (query.length > 2) {
             debounceTimer = setTimeout(() => fetchMovies(query), 300);
         } else {
@@ -193,6 +192,13 @@ function SearchFunctionality(){
             return;
         }
 
+        const sliderContainer = document.createElement("div");
+        sliderContainer.classList.add("movie-slider");
+        sliderContainer.style.overflowX = "auto";
+        sliderContainer.style.display = "flex";
+        sliderContainer.style.scrollBehavior = "smooth";
+        sliderContainer.style.gap = "10px";
+
         movies.forEach(movie => {
             const movieCard = document.createElement("div");
             movieCard.classList.add("movie-card");
@@ -205,10 +211,61 @@ function SearchFunctionality(){
                     <a href="https://www.themoviedb.org/movie/${movie.id}" class="watch-btn" target="_blank">🎥 More Info</a>
                 </div>
             `;
-            resultsContainer.appendChild(movieCard);
+            sliderContainer.appendChild(movieCard);
         });
+
+        resultsContainer.appendChild(sliderContainer);
+
+        const prevBtn = document.createElement("button");
+        prevBtn.innerHTML = "⬅";
+        prevBtn.classList.add("prev-btn");
+        prevBtn.style.position = "absolute";
+        prevBtn.style.left = "10px";
+        prevBtn.style.top = "50%";
+        prevBtn.style.transform = "translateY(-50%)";
+        prevBtn.style.display = "none";
+        prevBtn.style.fontSize = "2.5rem";
+        prevBtn.style.padding = "10px";
+        prevBtn.style.cursor = "pointer";
+        prevBtn.style.borderRadius = "15px";
+        prevBtn.style.border = "none";
+
+        const nextBtn = document.createElement("button");
+        nextBtn.innerHTML = "➡";
+        nextBtn.classList.add("next-btn");
+        nextBtn.style.position = "absolute";
+        nextBtn.style.right = "10px";
+        nextBtn.style.top = "50%";
+        nextBtn.style.transform = "translateY(-50%)";
+        nextBtn.style.display = "none";
+        nextBtn.style.fontSize = "2.5rem";
+        nextBtn.style.padding = "10px";
+        nextBtn.style.cursor = "pointer";
+        nextBtn.style.borderRadius = "15px";
+        nextBtn.style.border = "none";
+
+        resultsContainer.style.position = "relative";
+        resultsContainer.appendChild(prevBtn);
+        resultsContainer.appendChild(nextBtn);
+
+        function updateButtons() {
+            prevBtn.style.display = sliderContainer.scrollLeft > 0 ? "block" : "none";
+            nextBtn.style.display = sliderContainer.scrollLeft + sliderContainer.clientWidth < sliderContainer.scrollWidth ? "block" : "none";
+        }
+
+        nextBtn.addEventListener("click", () => {
+            sliderContainer.scrollBy({ left: 400, behavior: "smooth" });
+        });
+
+        prevBtn.addEventListener("click", () => {
+            sliderContainer.scrollBy({ left: -400, behavior: "smooth" });
+        });
+
+        sliderContainer.addEventListener("scroll", updateButtons);
+        updateButtons();
     }
 }
+
 HomeSection();
 FetchMovies();
 SearchFunctionality();
