@@ -544,6 +544,12 @@ body::-webkit-scrollbar-thumb{
     .watch-btn{
         transform: translate(15%);
     }
+    #searching{
+        width : 80%;
+    }
+    .category{
+        margin-top : 20px
+    }
 }
 @media (max-width:300px){
     #section li{
