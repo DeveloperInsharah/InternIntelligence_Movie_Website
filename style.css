@@ -539,16 +539,16 @@ body::-webkit-scrollbar-thumb{
     #section li{
        font-size: 1.7rem;
     }
-}
-@media (max-width:315px){
-    .watch-btn{
-        transform: translate(15%);
-    }
     #searching{
         width : 80%;
     }
     .category{
         margin-top : 20px
+    }
+}
+@media (max-width:315px){
+    .watch-btn{
+        transform: translate(15%);
     }
 }
 @media (max-width:300px){
