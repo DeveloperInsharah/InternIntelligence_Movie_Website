@@ -534,16 +534,16 @@ body::-webkit-scrollbar-thumb{
     .category h2{
         font-size: 2.4rem;
     }
-}
-@media (max-width:350px){
-    #section li{
-       font-size: 1.7rem;
-    }
     #searching{
         width : 80%;
     }
     .category{
         margin-top : 20px
+    }
+}
+@media (max-width:350px){
+    #section li{
+       font-size: 1.7rem;
     }
 }
 @media (max-width:315px){
